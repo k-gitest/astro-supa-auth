@@ -1,0 +1,21 @@
+{
+  "name": "astro",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev --port 3001 --host 0.0.0.0",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/node": "^8.1.0",
+    "@astrojs/svelte": "^5.0.3",
+    "@supabase/supabase-js": "^2.39.3",
+    "astro": "^4.1.1",
+    "sass": "^1.70.0",
+    "svelte": "^4.2.9",
+    "zod": "^3.22.4"
+  }
+}

@@ -1,0 +1,14 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import AuthForm from '@/components/AuthForm.astro'
+
+export const prerender = true
+
+---
+
+<Layout title="Sign in">
+  <AuthForm title="Sign in">
+    <p>初めてですか? <a href="/register">アカウントを作成してください</a></p>
+  </AuthForm>
+</Layout>
+

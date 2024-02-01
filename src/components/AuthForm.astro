@@ -1,0 +1,112 @@
+---
+type Locals = {
+  path: string;
+}
+type Props = {
+  title: string;
+}
+const apiPath: Locals = Astro.locals.path
+const {title}: Props = Astro.props
+
+---
+
+<script is:inline>
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const response = await fetch(this.path, {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (response.ok) {
+      const result = await response;
+      if(this.path === '/api/auth/signin'){
+        window.location.href = "/dashboard";
+      } else {
+        window.location.href = "/signin"
+      }
+      
+    } else {
+      const errorTxt = document.getElementById('error')
+      const errorMessage = await response.text();
+      errorTxt.innerHTML = errorMessage
+    }
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    const form = document.getElementById('authForm');
+    const actionPath = new URL(form.action).pathname;
+
+    if(form){
+      form.addEventListener('submit', {path: actionPath, handleEvent: handleSubmit});
+    }
+  });
+
+</script>
+
+<div class="contentWrap">
+  <h1>{title}</h1>
+  <slot />
+  <div><p id="error"></p></div>
+
+  <form id="authForm" action={apiPath}>
+    <div class="formWrap">
+      <label for="email" for="email"><span>Email</span>
+        <input type="email" name="email" id="email" autocomplete="email" />
+      </label>
+      <label for="password"><span>Password</span>
+        <input type="password" name="password" id="password" autocomplete="current-password" />
+      </label>
+      <button type="submit">Login</button>
+    </div>
+  </form>
+</div>
+
+<style lang="scss">
+  .contentWrap{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #error {
+    margin: 0;
+    padding: 0;
+    color: red;
+  }
+  .formWrap {
+    max-width: 300px;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    border:1px solid #ccc;
+    border-radius: .7rem;
+    padding: 1rem;
+
+    label {
+      margin: 0;
+      padding: 0;
+    }
+
+    span {
+      display: block;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    button {
+      max-width: 200px;
+      height: 30px;
+      cursor: pointer;
+    }
+  }
+
+</style>
