@@ -15,7 +15,7 @@
     "@supabase/supabase-js": "^2.39.3",
     "astro": "^4.1.1",
     "sass": "^1.70.0",
-    "svelte": "^4.2.9",
+    "svelte": "^4.2.19",
     "zod": "^3.22.4"
   }
 }
