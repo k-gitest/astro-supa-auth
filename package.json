@@ -10,8 +10,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/node": "^10.0.0",
-    "@astrojs/svelte": "^8.1.1",
+    "@astrojs/node": "^11.0.2",
+    "@astrojs/svelte": "^9.0.1",
     "@supabase/supabase-js": "^2.39.3",
     "astro": "^5.3.0",
     "sass": "^1.70.0",
